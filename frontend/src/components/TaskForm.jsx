@@ -4,17 +4,18 @@ import axiosInstance from '../axiosConfig';
 
 const TaskForm = ({ tasks, setTasks, editingTask, setEditingTask }) => {
   const { user } = useAuth();
-  const [formData, setFormData] = useState({ title: '', description: '', deadline: '' });
+  const [formData, setFormData] = useState({ title: '', ingredients: '', steps: '', category: '' });
 
   useEffect(() => {
     if (editingTask) {
       setFormData({
         title: editingTask.title,
-        description: editingTask.description,
-        deadline: editingTask.deadline,
+        ingredients: editingTask.ingredients,
+        steps: editingTask.steps,
+        category: editingTask.category,
       });
     } else {
-      setFormData({ title: '', description: '', deadline: '' });
+      setFormData({ title: '', ingredients: '', steps: '', category: '' });
     }
   }, [editingTask]);
 
@@ -33,15 +34,15 @@ const TaskForm = ({ tasks, setTasks, editingTask, setEditingTask }) => {
         setTasks([...tasks, response.data]);
       }
       setEditingTask(null);
-      setFormData({ title: '', description: '', deadline: '' });
+      setFormData({ title: '', ingredients: '', steps: '', category: '' });
     } catch (error) {
-      alert('Failed to save task.');
+      alert('Failed to save recipe.');
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded mb-6">
-      <h1 className="text-2xl font-bold mb-4">{editingTask ? 'Edit Task' : 'Add Task'}</h1>
+      <h1 className="text-2xl font-bold mb-4">{editingTask ? 'Edit Recipe' : 'Add Recipe'}</h1>
       <input
         type="text"
         placeholder="Title"
@@ -51,19 +52,27 @@ const TaskForm = ({ tasks, setTasks, editingTask, setEditingTask }) => {
       />
       <input
         type="text"
-        placeholder="Description"
-        value={formData.description}
-        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+        placeholder="Ingredients"
+        value={formData.ingredients}
+        onChange={(e) => setFormData({ ...formData, ingredients: e.target.value })}
         className="w-full mb-4 p-2 border rounded"
       />
+      <textarea
+        placeholder="Steps"
+        value={formData.steps}
+        onChange={(e) => setFormData({ ...formData, steps: e.target.value })}
+        className="w-full mb-4 p-2 border rounded"
+        rows={3}
+      />
       <input
-        type="date"
-        value={formData.deadline}
-        onChange={(e) => setFormData({ ...formData, deadline: e.target.value })}
+        type="text"
+        placeholder="Category"
+        value={formData.category}
+        onChange={(e) => setFormData({ ...formData, category: e.target.value })}
         className="w-full mb-4 p-2 border rounded"
       />
       <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">
-        {editingTask ? 'Update Task' : 'Add Task'}
+        {editingTask ? 'Update Recipe' : 'Add Recipe'}
       </button>
     </form>
   );

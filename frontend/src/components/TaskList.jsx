@@ -11,7 +11,7 @@ const TaskList = ({ tasks, setTasks, setEditingTask }) => {
       });
       setTasks(tasks.filter((task) => task._id !== taskId));
     } catch (error) {
-      alert('Failed to delete task.');
+      alert('Failed to delete recipe.');
     }
   };
 
@@ -20,8 +20,9 @@ const TaskList = ({ tasks, setTasks, setEditingTask }) => {
       {tasks.map((task) => (
         <div key={task._id} className="bg-gray-100 p-4 mb-4 rounded shadow">
           <h2 className="font-bold">{task.title}</h2>
-          <p>{task.description}</p>
-          <p className="text-sm text-gray-500">Deadline: {new Date(task.deadline).toLocaleDateString()}</p>
+          <p className="text-sm text-gray-500"><span className="font-semibold">Category:</span> {task.category}</p>
+          <p className="text-sm text-gray-500"><span className="font-semibold">Ingredients:</span> {task.ingredients}</p>
+          <p className="text-sm text-gray-500"><span className="font-semibold">Steps:</span> {task.steps}</p>
           <div className="mt-2">
             <button
               onClick={() => setEditingTask(task)}

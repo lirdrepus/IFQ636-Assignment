@@ -17,7 +17,7 @@ const Tasks = () => {
         });
         setTasks(response.data);
       } catch (error) {
-        alert('Failed to fetch tasks.');
+        alert('Failed to fetch recipes.');
       }
     };
 
@@ -26,6 +26,7 @@ const Tasks = () => {
 
   return (
     <div className="container mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-6">My Recipes</h1>
       <TaskForm
         tasks={tasks}
         setTasks={setTasks}
