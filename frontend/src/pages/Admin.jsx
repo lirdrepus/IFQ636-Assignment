@@ -7,6 +7,7 @@ const Admin = () => {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
+    if (!user) return;
     const fetchTasks = async () => {
       try {
         const response = await axiosInstance.get('/api/tasks', {
@@ -31,6 +32,8 @@ const Admin = () => {
       alert('Failed to delete recipe.');
     }
   };
+
+  if (!user) return <div className="container mx-auto p-6">Please login first.</div>;
 
   return (
     <div className="container mx-auto p-6">
