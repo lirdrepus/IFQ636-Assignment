@@ -20,7 +20,7 @@ describe('AddTask Function Test', () => {
     // Mock request data
     const req = {
       user: { id: new mongoose.Types.ObjectId() },
-      body: { title: "New Task", description: "Task description", deadline: "2025-12-31" }
+      body: { title: "New Task", ingredients: "eggs, flour", steps: "Mix and bake", category: "Dessert" }
     };
 
     // Mock task that would be created
@@ -54,7 +54,7 @@ describe('AddTask Function Test', () => {
     // Mock request data
     const req = {
       user: { id: new mongoose.Types.ObjectId() },
-      body: { title: "New Task", description: "Task description", deadline: "2025-12-31" }
+      body: { title: "New Task", ingredients: "eggs, flour", steps: "Mix and bake", category: "Dessert" }
     };
 
     // Mock response object
